@@ -208,8 +208,7 @@ class MainMenuState extends MusicBeatState
 								case 'pokedex':
 									Main.switchState(this, new PokedexState());
 								case 'options':
-									openSubState(new OptionsMenuState());
-									// Main.switchState(this, new OptionsMenuState());
+									Main.switchState(this, new OptionsMenuState());
 								case 'credits':
 									Main.switchState(this, new CreditsMenuState());
 								case 'gallery':

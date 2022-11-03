@@ -140,7 +140,7 @@ class OptionsMenuState extends MusicBeatState
 		uUnown.animation.play('static');
 		// uUnown.setGraphicSize(Std.int(uUnown.width * resizeConstant));
 		uUnown.updateHitbox();
-		add(uUnown);		
+		add(uUnown);
 
 		infoText = new FlxText(5, FlxG.height - 24, 0, "", 32);
 		infoText.setFormat("VCR OSD Mono", 20, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
