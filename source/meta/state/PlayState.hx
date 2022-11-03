@@ -4013,8 +4013,7 @@ class PlayState extends MusicBeatState
 			} 
 
 			Conductor.songPosition = -(Conductor.crochet * (5 - (swagCounter + 1)));
-			swagCounter += 1;
-			// generateSong('fresh');
+			swagCounter++;
 		}, 5);
 	}
 
