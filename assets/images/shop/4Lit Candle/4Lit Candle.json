@@ -4,7 +4,7 @@
         "name": "Lit Candle",
         "price": 200,
         "animName": "Lit Candle instance 1",
-        "songUnlock": "",
+        "songUnlock": "Purin",
         "songDescription": "The fire won't go out no matter what you do",
         "unlockRequirements": [""],
         "xOffset": 20,
