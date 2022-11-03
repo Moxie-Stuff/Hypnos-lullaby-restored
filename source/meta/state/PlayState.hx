@@ -954,12 +954,15 @@ class PlayState extends MusicBeatState
 				accuracyThreshold = 90;
 				if (gameplayMode == 'Hell')
 					accuracyThreshold = 98;
-
 				accuracyText = new FlxText();
 				accuracyText.setFormat(Paths.font('vcr.ttf'), 18, FlxColor.WHITE);
 				accuracyText.setBorderStyle(OUTLINE, FlxColor.BLACK, 1.5);
 				accuracyText.cameras = [camHUD];
 				accuracyText.antialiasing = true;
+				if(accuracyThreshold > 90)
+					accuracyText.color = FlxColor.GREEN;
+				if(gameplayMode == 'Hell' && accuracyThreshold > 98)
+					accuracyText.color = FlxColor.GREEN;
 
 				iconFeraligatr = new HealthIcon('feraligatr', false);
 				iconFeraligatr.cameras = [camHUD];
@@ -1014,6 +1017,8 @@ class PlayState extends MusicBeatState
 			bronzongMechanic = false;
 			useFrostbiteMechanic = false;
 			accuracyMod = false;
+			botplayText.txt = "certified pussy enjoyer";
+			botplayQuotes.txt = "this is why I love github commiting :hotface:";
 		}
 
 		// create the game camera
