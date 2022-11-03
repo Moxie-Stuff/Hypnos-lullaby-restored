@@ -1072,7 +1072,7 @@ class PlayState extends MusicBeatState
 			useFrostbiteMechanic = false;
 			accuracyMod = false;
 			botplayText.text = "certified pussy enjoyer";
-			botplayQuotes.text = "this is why I love github commiting :hotface:";
+			// botplayQuotes.text = "this is why I love github commiting :hotface:";
 		}
 
 		// create the game camera
