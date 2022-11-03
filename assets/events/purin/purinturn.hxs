@@ -1,3 +1,5 @@
+// TODO: add purin's turn animation & other shit
+
 function returnDescription()
     return "Jiggly phase switch";
 
