@@ -195,50 +195,52 @@ class MainMenuState extends MusicBeatState
 
 			if (accept) {
 				if ((FlxG.save.data.mainMenuOptionsUnlocked.contains(optionList[curSelection])))
+				{
+					FlxG.sound.play(Paths.sound('confirmMenu'));
+					FlxFlicker.flicker(textGroup.members[curSelection], 0.85, 0.06 * 2, true, false, function(flick:FlxFlicker)
 					{
-						FlxG.sound.play(Paths.sound('confirmMenu'));
-						FlxFlicker.flicker(textGroup.members[curSelection], 0.85, 0.06 * 2, true, false, function(flick:FlxFlicker)
+						switch (optionList[curSelection])
 						{
-							switch (optionList[curSelection])
-							{
-								case 'story':
-									Main.switchState(this, new StoryMenuState());
-								case 'freeplay':
-									Main.switchState(this, new ShopState());
-								case 'pokedex':
-									Main.switchState(this, new PokedexState());
-								case 'options':
-									Main.switchState(this, new OptionsMenuState());
-								case 'credits':
-									Main.switchState(this, new CreditsMenuState());
-								case 'gallery':
-									Main.switchState(this, new GalleryState());
-								default:
-									canSelect = true;
-							}
-						});
-						canSelect = false;
-					}
+							case 'story':
+								Main.switchState(this, new StoryMenuState());
+							case 'freeplay':
+								Main.switchState(this, new ShopState());
+							case 'pokedex':
+								Main.switchState(this, new PokedexState());
+							case 'options':
+								Main.switchState(this, new OptionsMenuState());
+							case 'credits':
+								Main.switchState(this, new CreditsMenuState());
+							case 'gallery':
+								Main.switchState(this, new GalleryState());
+							default:
+								canSelect = true;
+						}
+					});
+					canSelect = false;
+				}
 				else
-					{
-						FlxG.sound.play(Paths.sound('errorMenu'));
-						camera.shake(0.005, 0.06);
-					}
+				{
+					FlxG.sound.play(Paths.sound('errorMenu'));
+					camera.shake(0.005, 0.06);
+				}
 			}
 		}
 
-		if (Main.hypnoDebug && FlxG.keys.justPressed.SEVEN) //DEBUG UNLOCKS ALL PROGRESSION
-			{
-				FlxG.save.data.mainMenuOptionsUnlocked = ['story', 'freeplay', 'credits', 'pokedex', 'gallery', 'options'];
-				FlxG.save.data.cartridgesOwned = ['HypnoWeek', 'LostSilverWeek', 'GlitchWeek'];
-				FlxG.save.data.unlockedSongs = ['safety-lullaby', 'left-unchecked', 'lost-cause', 'frostbite', 'insomnia', 'monochrome', 'missingno', 'brimstone', 'amusia', 'dissension', 'purin', 'death-toll', 'isotope', 'bygone-purpose', 'pasta-night', 'shinto', 'shitno'];
-			}
+		#if debug
+		if (FlxG.keys.justPressed.SEVEN) //DEBUG UNLOCKS ALL PROGRESSION
+		{
+			FlxG.save.data.mainMenuOptionsUnlocked = ['story', 'freeplay', 'credits', 'pokedex', 'gallery', 'options'];
+			FlxG.save.data.cartridgesOwned = ['HypnoWeek', 'LostSilverWeek', 'GlitchWeek'];
+			FlxG.save.data.unlockedSongs = ['safety-lullaby', 'left-unchecked', 'lost-cause', 'frostbite', 'insomnia', 'monochrome', 'missingno', 'brimstone', 'amusia', 'dissension', 'purin', 'death-toll', 'isotope', 'bygone-purpose', 'pasta-night', 'shinto', 'shitno'];
+		}
 
-		if (Main.hypnoDebug && FlxG.keys.justPressed.DELETE) {
+		if (FlxG.keys.justPressed.DELETE) {
 			FlxG.save.erase();
 			FlxG.save.flush();
 			FlxG.resetGame();
 		}
+		#end
 
 		// unlock decision stuffs lmao
 		if (FlxG.save.data.queuedUnlocks != null && FlxG.save.data.queuedUnlocks.length > 0) {
