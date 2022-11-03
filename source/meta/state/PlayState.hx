@@ -2102,36 +2102,36 @@ class PlayState extends MusicBeatState
 			if (health <= minHealth && startedCountdown)
 				die();
 
-			/*if (Main.hypnoDebug)
+			#if debug
+			// no skipping during unowning
+			if (FlxG.keys.justPressed.ONE && !unowning) 
+			{
+				songMusic.volume = 0;
+				vocals.volume = 0;
+				doMoneyBag();
+			}
+	
+			if (FlxG.keys.justPressed.TWO) {
+				if (!usedTimeTravel && Conductor.songPosition + 10000 < songMusic.length)
 				{
-					if (FlxG.keys.justPressed.ONE) 
-						{
-							songMusic.volume = 0;
-							vocals.volume = 0;
-							doMoneyBag();
-						}
-			
-					if (FlxG.keys.justPressed.TWO) {
-						if (!usedTimeTravel && Conductor.songPosition + 10000 < songMusic.length)
-						{
-							usedTimeTravel = true;
-							songMusic.pause();
-							vocals.pause();
-							Conductor.songPosition += 10000;
-		
-							canDie = false;
-		
-							songMusic.time = Conductor.songPosition;
-							songMusic.play();
-							vocals.time = Conductor.songPosition;
-							vocals.play();
-							new FlxTimer().start(0.5, function(tmr:FlxTimer)
-							{
-								usedTimeTravel = false;
-							});
-						}
-					}
-				}*/
+					usedTimeTravel = true;
+					songMusic.pause();
+					vocals.pause();
+					Conductor.songPosition += 10000;
+
+					canDie = false;
+
+					songMusic.time = Conductor.songPosition;
+					songMusic.play();
+					vocals.time = Conductor.songPosition;
+					vocals.play();
+					new FlxTimer().start(0.5, function(tmr:FlxTimer)
+					{
+						usedTimeTravel = false;
+					});
+				}
+			}
+			#end
 
 			// copy paste im lazy
 			var pendulumOffset:Array<Int> = [];
