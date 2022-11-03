@@ -348,9 +348,19 @@ class PlayState extends MusicBeatState
 		super.create();
 		instance = this;
 
+		#if sys
 		var time = Sys.time();
+		#else
+		// var time = FlxG.elapsed;
+		var time = haxe.Timer.stamp();
+		#end
 		Events.obtainEvents();
+		#if sys
 		var newtime = Sys.time();
+		#else
+		// var newtime = FlxG.elasped;
+		var newtime = haxe.Timer.stamp();
+		#end
 		trace(newtime - time);
 		staticValues.clear();
 		staticValues = [];
