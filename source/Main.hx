@@ -1,6 +1,5 @@
 package;
 
-import cpp.Pointer;
 import flixel.FlxBasic;
 import flixel.FlxG;
 import flixel.FlxGame;
