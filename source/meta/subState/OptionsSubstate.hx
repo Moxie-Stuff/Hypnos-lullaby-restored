@@ -34,7 +34,7 @@ class OptionsSubstate extends MusicBeatSubState
 		sleft.animation.play('static');
 		// sleft.setGraphicSize(Std.int(sleft.width * resizeConstant));
 		sleft.updateHitbox();
-		add(sleft);
+		// add(sleft);
 
 		var sright:FlxSprite = new FlxSprite(916, 300);
 		sright.frames = Paths.getSparrowAtlas('menus/options/S Unown');
@@ -42,7 +42,7 @@ class OptionsSubstate extends MusicBeatSubState
 		sright.animation.play('static');
 		// sright.setGraphicSize(Std.int(sright.width * resizeConstant));
 		sright.updateHitbox();
-		add(sright);
+		// add(sright);
 
 		var uUnown:FlxSprite = new FlxSprite(850, 50);
 		uUnown.frames = Paths.getSparrowAtlas('menus/options/U unown');
@@ -50,7 +50,7 @@ class OptionsSubstate extends MusicBeatSubState
 		uUnown.animation.play('static');
 		// uUnown.setGraphicSize(Std.int(uUnown.width * resizeConstant));
 		uUnown.updateHitbox();
-		add(uUnown);
+		// add(uUnown);
 
 		super.create();
 

@@ -62,7 +62,6 @@ class OptionsMenuState extends MusicBeatState
 				[
 					['Gameplay Settings', null],
 					['', null],
-					['Controller Mode', getFromOption],
 					['Downscroll', getFromOption],
 					['Centered Notefield', getFromOption],
 					['Ghost Tapping', getFromOption],
@@ -79,6 +78,7 @@ class OptionsMenuState extends MusicBeatState
 					['FPS Counter', getFromOption],
 					['Memory Counter', getFromOption],
 					#if !neko ['Debug Info', getFromOption], #end
+					['Mechanics', getFromOption],
 				]
 			],
 			'appearance' => [

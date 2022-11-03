@@ -57,7 +57,7 @@ class Init extends FlxState
 			'Whether to have the strumline vertically flipped in gameplay.',
 			NOT_FORCED
 		],
-		'Auto Pause' => [true, Checkmark, '', NOT_FORCED],
+		'Auto Pause' => [true, Checkmark, 'Whether to pause the game automatically if the window is unfocused.', NOT_FORCED],
 		'FPS Counter' => [true, Checkmark, 'Whether to display the FPS counter.', NOT_FORCED],
 		'Memory Counter' => [
 			true,
@@ -171,7 +171,13 @@ class Init extends FlxState
 			"Simplifies the judgement animations, displaying only one judgement / rating sprite at a time.",
 			NOT_FORCED
 		],
-
+		'Mechanics' => [
+			'None',
+			Selector,
+			'Choose the difficulty of the mechanics. (MAY NOT APPLY TO ALL SONGS)',
+			NOT_FORCED,
+			['Pussy', 'Normal', 'Hell']
+		],
 
 	];
 

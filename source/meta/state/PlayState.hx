@@ -307,7 +307,7 @@ class PlayState extends MusicBeatState
 
 	// stores the last combo objects in an array
 	public static var lastCombo:Array<FlxSprite>;
-	public static var gameplayMode:String = NORMAL;
+	public static var gameplayMode:String = 'Normal';
 
 	public var healthBarBA:FlxTiledSprite;
 	public var healthBarBF:FlxTiledSprite;
@@ -381,6 +381,7 @@ class PlayState extends MusicBeatState
 		bronzongMechanic = false;
 		defaultDownscroll = Init.trueSettings.get('Downscroll');
 		flashingEnabled = Init.trueSettings.get('Flashing Lights');
+		gameplayMode = Init.trueSettings.get('Mechanics');
 
 		Timings.callAccuracy();
 
@@ -838,7 +839,7 @@ class PlayState extends MusicBeatState
 		// switch song
 		stageBuild.stageCreatePost();
 		
-		if (gameplayMode != PUSSY_MODE) {
+		if (gameplayMode != 'Pussy') {
 			// switch character
 			pendulum = new FlxSprite();
 			if (SONG.player2 == 'hypno')
@@ -946,7 +947,7 @@ class PlayState extends MusicBeatState
 			if (accuracyMod)
 			{
 				accuracyThreshold = 90;
-				if (gameplayMode == HELL_MODE)
+				if (gameplayMode == 'Hell')
 					accuracyThreshold = 98;
 
 				accuracyText = new FlxText();
@@ -1237,7 +1238,7 @@ class PlayState extends MusicBeatState
 
 	public function startUnown(timer:Int = 15, word:String = ''):Void
 	{
-		if (gameplayMode != PUSSY_MODE) {
+		if (gameplayMode != 'Pussy') {
 			canPause = false;
 			unowning = true;
 			persistentUpdate = true;
@@ -1992,7 +1993,7 @@ class PlayState extends MusicBeatState
 					}	
 				}
 
-				if ((useFrostbiteMechanic && typhlosionUses >= 1 && typhlosion.animation.curAnim.name != 'fire' && gameplayMode != PUSSY_MODE) && (strumLines.members[playerLane].autoplay && coldness >= 0.5 || (controls.SPACE_P && !strumLines.members[playerLane].autoplay)))
+				if ((useFrostbiteMechanic && typhlosionUses >= 1 && typhlosion.animation.curAnim.name != 'fire' && gameplayMode != 'Pussy') && (strumLines.members[playerLane].autoplay && coldness >= 0.5 || (controls.SPACE_P && !strumLines.members[playerLane].autoplay)))
 					{
 						useTyphlosion();
 					}
