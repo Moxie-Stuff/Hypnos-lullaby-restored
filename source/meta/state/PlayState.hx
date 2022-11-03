@@ -59,12 +59,7 @@ import openfl.filters.BitmapFilter;
 import openfl.filters.ShaderFilter;
 import openfl.media.Sound;
 import openfl.utils.Assets;
-import sys.io.File;
 import meta.data.dependency.Discord;
-
-#if sys
-import sys.FileSystem;
-#end
 
 import vlc.MP4Handler;
 
@@ -805,7 +800,7 @@ class PlayState extends MusicBeatState
 		dialogueHUD.bgColor.alpha = 0;
 		FlxG.cameras.add(dialogueHUD);
 
-		if (sys.FileSystem.exists(Paths.songJson(SONG.song.toLowerCase(), 'lyrics', false))) {
+		if (Assets.exists(Paths.songJson(SONG.song.toLowerCase(), 'lyrics', false))) {
 			trace('ly rics');
 			var myLyrics:Array<LyricMeasure> = Lyrics.parseLyrics(SONG.song.toLowerCase());
 			var lyrics:Lyrics = new Lyrics(myLyrics);
@@ -3465,7 +3460,7 @@ class PlayState extends MusicBeatState
 
 		// generate the chart
 		unspawnNotes = ChartLoader.generateChartType(SONG, determinedChartType, this);
-		if (sys.FileSystem.exists(Paths.songJson(SONG.song.toLowerCase(), 'events', old))) {
+		if (Assets.exists(Paths.songJson(SONG.song.toLowerCase(), 'events', old))) {
 			trace('events found');
 			var eventJson:SwagSong = Song.loadFromJson('events'+(old ? '_old' : ''), SONG.song.toLowerCase(), old);
 			if (eventJson != null)
