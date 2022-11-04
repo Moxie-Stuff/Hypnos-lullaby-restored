@@ -224,7 +224,6 @@ class MainMenuState extends MusicBeatState
 			}
 		}
 
-		#if debug
 		if (FlxG.keys.justPressed.SEVEN) //DEBUG UNLOCKS ALL PROGRESSION
 		{
 			FlxG.save.data.mainMenuOptionsUnlocked = ['story', 'freeplay', 'credits', 'pokedex', 'gallery', 'options'];
@@ -238,7 +237,6 @@ class MainMenuState extends MusicBeatState
 			FlxG.save.flush();
 			FlxG.resetGame();
 		}
-		#end
 
 		// unlock decision stuffs lmao
 		if (FlxG.save.data.queuedUnlocks != null && FlxG.save.data.queuedUnlocks.length > 0) {
