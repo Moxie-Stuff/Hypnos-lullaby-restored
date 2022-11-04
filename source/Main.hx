@@ -21,11 +21,13 @@ import openfl.Assets;
 import openfl.Lib;
 import openfl.display.FPS;
 import openfl.display.Sprite;
+#if (!html5 && sys)
 import openfl.events.Event;
 import openfl.events.UncaughtErrorEvent;
 import sys.FileSystem;
 import sys.io.File;
 import sys.io.Process;
+#end
 
 // Here we actually import the states and metadata, and just the metadata.
 // It's nice to have modularity so that we don't have ALL elements loaded at the same time.
@@ -116,7 +118,9 @@ class Main extends Sprite
 			note studders and shit its weird.
 		**/
 
+		#if (!html5 && sys)
 		Lib.current.loaderInfo.uncaughtErrorEvents.addEventListener(UncaughtErrorEvent.UNCAUGHT_ERROR, onCrash);
+		#end
 
 		// simply said, a state is like the 'surface' area of the window where everything is drawn.
 		// if you've used gamemaker you'll probably understand the term surface better
@@ -203,6 +207,7 @@ class Main extends Sprite
 		}
 	}
 
+	#if (!html5 && sys)
 	function onCrash(e:UncaughtErrorEvent):Void
 	{
 		var errMsg:String = "";
@@ -259,4 +264,5 @@ class Main extends Sprite
 
 		Sys.exit(1);
 	}
+	#end
 }
