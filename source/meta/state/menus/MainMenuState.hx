@@ -29,7 +29,7 @@ using StringTools;
 class MainMenuState extends MusicBeatState
 {
 
-	static inline final unlockedCharacters:Map<String, Array<String>> = [
+	static final unlockedCharacters:Map<String, Array<String>> = [
 		'Safety-Lullaby' => ['hypno', 'gf'],
 		'Lost-Cause' => ['bf'],
 		'Frostbite' => ['red', 'cold_gold', 'pikachu', 'typhlosion'],
@@ -45,7 +45,7 @@ class MainMenuState extends MusicBeatState
 		'Shitno' => ['shitno'],
 	];
 
-	static inline final offsetArray:Map<String, FlxPoint> = [
+	static final offsetArray:Map<String, FlxPoint> = [
 		'hypno' => FlxPoint.weak(200, 100),
 		'buried_alive' => FlxPoint.weak(-200, 0),
 		'gold' => FlxPoint.weak(-50, 0),
