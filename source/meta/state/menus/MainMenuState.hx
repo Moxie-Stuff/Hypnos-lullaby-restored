@@ -174,10 +174,7 @@ class MainMenuState extends MusicBeatState
 		var down:Bool = controls.UI_DOWN_P;
 		var accept:Bool = controls.ACCEPT;
 
-		if (canSelect 
-			// || Main.hypnoDebug
-			// i use this bug too much lol
-			) {
+		if (canSelect) {
 			if (up)
 				curSelection--;
 			if (down)
@@ -233,6 +230,7 @@ class MainMenuState extends MusicBeatState
 			FlxG.save.data.mainMenuOptionsUnlocked = ['story', 'freeplay', 'credits', 'pokedex', 'gallery', 'options'];
 			FlxG.save.data.cartridgesOwned = ['HypnoWeek', 'LostSilverWeek', 'GlitchWeek'];
 			FlxG.save.data.unlockedSongs = ['safety-lullaby', 'left-unchecked', 'lost-cause', 'frostbite', 'insomnia', 'monochrome', 'missingno', 'brimstone', 'amusia', 'dissension', 'purin', 'death-toll', 'isotope', 'bygone-purpose', 'pasta-night', 'shinto', 'shitno'];
+			FlxG.save.flush();
 		}
 
 		if (FlxG.keys.justPressed.DELETE) {
