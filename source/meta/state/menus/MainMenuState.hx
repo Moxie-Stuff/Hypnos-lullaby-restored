@@ -28,7 +28,6 @@ using StringTools;
 
 class MainMenuState extends MusicBeatState
 {
-
 	static final unlockedCharacters:Map<String, Array<String>> = [
 		'Safety-Lullaby' => ['hypno', 'gf'],
 		'Lost-Cause' => ['bf'],

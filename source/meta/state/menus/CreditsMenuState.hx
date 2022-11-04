@@ -1,9 +1,6 @@
 package meta.state.menus;
 
 import haxe.Json;
-#if sys
-import sys.io.File;
-#end
 import flixel.FlxCamera;
 import flixel.FlxG;
 import flixel.FlxSprite;
@@ -15,19 +12,20 @@ import flixel.util.FlxColor;
 import meta.MusicBeat;
 import openfl.display.GraphicsShader;
 import openfl.filters.ShaderFilter;
-#if sys
-import sys.FileSystem;
-#end
+import openfl.utils.Assets;
 
 using StringTools;
-typedef Credits = {
-    var name:String;
-    var quote:String;
-    var profession:String;
-    var description:String;
+
+typedef Credits =
+{
+	var name:String;
+	var quote:String;
+	var profession:String;
+	var description:String;
 }
 
-class CreditsMenuState extends MusicBeatState {
+class CreditsMenuState extends MusicBeatState
+{
 	public var chromaticAberration:ShaderFilter;
 	public var aberrateTimeValue:Float = 0.05;
 
@@ -160,14 +158,16 @@ frostbite,shitno,monochrome,stranged red and isotope,missingno and a few other s
 			description: "I was brought on after finding out about Pasta Night. I originally was just meant to overview the Lord X sprites but I ended up volunteering to help design the background characters and level layout. It was awesome trying to fit as many references as we could, and I'm grateful that the team was as open as they were with it. The Hypno dev team is amazing, and working with them has been nothing but a pleasure. Also, staying up and watching Spy x Family was one of the many highlights I've had :')"
 		}
 		// */
-    ];
+	];
 
-    public var iconList:Array<FlxSprite> = [];
+	public var iconList:Array<FlxSprite> = [];
 	public var personList:Array<Credits> = [];
+
 	var backdrop:FlxBackdrop;
 
-    override public function create() {
-        super.create();
+	override public function create()
+	{
+		super.create();
 
 		// initialize shop music
 		FlxG.sound.playMusic(Paths.music('creditsTheme'), 0.5, true);
@@ -175,12 +175,12 @@ frostbite,shitno,monochrome,stranged red and isotope,missingno and a few other s
 
 		var camGame:FlxCamera = new FlxCamera();
 		var camHUD:FlxCamera = new FlxCamera(0, 0, 912, 513);
-        
+
 		// camHUD.bgColor.alpha = 0;
 		FlxG.cameras.reset(camGame);
 		FlxG.cameras.add(camHUD);
-        
-        // loll
+
+		// loll
 		var camOther:FlxCamera = new FlxCamera();
 		camOther.bgColor.alpha = 0;
 		FlxG.cameras.add(camOther);
@@ -189,18 +189,18 @@ frostbite,shitno,monochrome,stranged red and isotope,missingno and a few other s
 		sprite.frames = Paths.getSparrowAtlas('menus/credit/CREDITS_TV');
 		sprite.animation.addByPrefix('CREDITS TV', 'CREDITS TV', 24);
 		sprite.animation.play('CREDITS TV');
-        add(sprite);
-        sprite.screenCenter();
-        sprite.cameras = [camGame];
-        sprite.y += 16;
-        camHUD.cameras = [camGame];
+		add(sprite);
+		sprite.screenCenter();
+		sprite.cameras = [camGame];
+		sprite.y += 16;
+		camHUD.cameras = [camGame];
 
-        camHUD.x = FlxG.width / 2 - camHUD.width / 2;
+		camHUD.x = FlxG.width / 2 - camHUD.width / 2;
 		camHUD.y = (FlxG.height / 2 - camHUD.height / 2) - 64;
 
 		chromaticAberration = new ShaderFilter(new GraphicsShader("", Paths.shader('monitor')));
 		// chromaticAberration.shader.data.effectTime.value = [aberrateTimeValue];
-		camHUD.setFilters([chromaticAberration]); 
+		camHUD.setFilters([chromaticAberration]);
 
 		// camHUD
 		var background:FlxGroup = new FlxGroup();
@@ -213,45 +213,48 @@ frostbite,shitno,monochrome,stranged red and isotope,missingno and a few other s
 
 		// background shis
 		var white:FlxSprite = new FlxSprite().makeGraphic(1280, 720, FlxColor.WHITE);
-        white.alpha = 0.25;
+		white.alpha = 0.25;
 		background.add(white);
 
 		var list:Array<String> = CoolUtil.coolTextFile(Paths.txt('images/menus/credit/iconorder'));
-		for (person in list) {
-			if (FileSystem.exists(Paths.getPath('images/menus/credit/icon/${person.replace(' ', '_')}.json', TEXT))) {
+		for (person in list)
+		{
+			if (Assets.exists(Paths.getPath('images/menus/credit/icon/${person.replace(' ', '_')}.json', TEXT)))
+			{
 				var icon:FlxSprite = new FlxSprite();
-				if (FileSystem.exists(Paths.getPath('images/menus/credit/icon/${person.replace(' ', '_')}.png', IMAGE)))
+				if (Assets.exists(Paths.getPath('images/menus/credit/icon/${person.replace(' ', '_')}.png', IMAGE)))
 					icon.loadGraphic(Paths.image('menus/credit/icon/${person.replace(' ', '_')}'));
-				else icon.loadGraphic(Paths.image('menus/credit/icon/placeholder'));
+				else
+					icon.loadGraphic(Paths.image('menus/credit/icon/placeholder'));
 				icon.setGraphicSize(Std.int(icon.width * (3 / 5)));
 				icon.updateHitbox();
 				icon.antialiasing = true;
 				iconList.push(icon);
 				background.add(icon);
-			
-				var rawJson = File.getContent(Paths.getPath('images/menus/credit/icon/${person.replace(' ', '_')}.json', TEXT));
+
+				var rawJson = Assets.getText(Paths.getPath('images/menus/credit/icon/${person.replace(' ', '_')}.json', TEXT));
 				var credits:Credits = cast Json.parse(rawJson).info;
 				credits.name = person;
 				personList.push(credits);
 			}
-        }
+		}
 
 		var box:FlxSprite = new FlxSprite().loadGraphic(Paths.image('menus/credit/box'));
-        background.add(box);
+		background.add(box);
 
 		for (i in 0...iconList.length)
 			iconList[i].alpha = 0.3;
 		iconList[verticalSelection].alpha = 1;
 
-        var point:Int = 200;
+		var point:Int = 200;
 
-        var upPointer:FlxSprite = new FlxSprite();
+		var upPointer:FlxSprite = new FlxSprite();
 		upPointer.frames = Paths.getSparrowAtlas('menus/menu/campaign_menu_UI_assets');
 		upPointer.animation.addByPrefix('idle', 'arrow push left', 0, false);
-        upPointer.animation.play('idle');
-        upPointer.animation.curAnim.curFrame = 1;
-        upPointer.angle = 90;
-        upPointer.y = 32;
+		upPointer.animation.play('idle');
+		upPointer.animation.curAnim.curFrame = 1;
+		upPointer.angle = 90;
+		upPointer.y = 32;
 		upPointer.x = point - upPointer.width / 2;
 
 		var downPointer:FlxSprite = new FlxSprite();
@@ -263,14 +266,14 @@ frostbite,shitno,monochrome,stranged red and isotope,missingno and a few other s
 		downPointer.y = camHUD.height - (downPointer.height + 32);
 		downPointer.x = point - downPointer.width / 2;
 
-        background.add(upPointer);
-        background.add(downPointer);
+		background.add(upPointer);
+		background.add(downPointer);
 		CoolUtil.lerpSnap = true;
 
-        topText = new FlxText(0, 0, 0, 'goober');
+		topText = new FlxText(0, 0, 0, 'goober');
 		topText.setFormat(Paths.font('vcr.ttf'), 32, FlxColor.WHITE);
-        topText.y = 32;
-        background.add(topText);
+		topText.y = 32;
+		background.add(topText);
 
 		professionText = new FlxText(0, 0, 485 - 32, 'idea person');
 		professionText.setFormat(Paths.font('vcr.ttf'), 24, FlxColor.WHITE);
@@ -284,32 +287,34 @@ frostbite,shitno,monochrome,stranged red and isotope,missingno and a few other s
 		stupidQuote.alignment = FlxTextAlign.CENTER;
 		background.add(stupidQuote);
 
-		descriptionText = new FlxText(0, 0, 485 - 32, "this person is completely useless to the team and will not contribute at all whatsoever. I don't know what else to say, they are completely fucking useless");
+		descriptionText = new FlxText(0, 0, 485 - 32,
+			"this person is completely useless to the team and will not contribute at all whatsoever. I don't know what else to say, they are completely fucking useless");
 		descriptionText.setFormat(Paths.font('vcr.ttf'), 20, FlxColor.WHITE);
 		descriptionText.x = 384 + 16;
 		background.add(descriptionText);
 
 		updateText();
-    }
+	}
 
 	public var moverCooldown:Float = 0;
 
 	public var verticalSelection:Int = 0;
 
-    public var topText:FlxText;
+	public var topText:FlxText;
 	public var stupidQuote:FlxText;
-    public var professionText:FlxText;
-    public var descriptionText:FlxText;
+	public var professionText:FlxText;
+	public var descriptionText:FlxText;
 
-    override public function update(elapsed:Float) {
-        super.update(elapsed);
+	override public function update(elapsed:Float)
+	{
+		super.update(elapsed);
 
 		backdrop.x += (elapsed / (1 / 60)) / 2;
 		backdrop.y = Math.sin(backdrop.x / 48) * 48;
 
 		if (controls.BACK)
-			Main.switchState(this, new MainMenuState());  
-        
+			Main.switchState(this, new MainMenuState());
+
 		// controls
 		var newSelection:Int = verticalSelection;
 		var up = controls.UI_UP;
@@ -330,7 +335,7 @@ frostbite,shitno,monochrome,stranged red and isotope,missingno and a few other s
 					newSelection = (iconList.length - 1) - even;
 				if (newSelection > iconList.length - 1)
 					newSelection = newSelection % 2;
-                
+
 				moverCooldown += FlxG.updateFramerate / 4;
 			}
 			else
@@ -346,7 +351,7 @@ frostbite,shitno,monochrome,stranged red and isotope,missingno and a few other s
 					newSelection = iconList.length - 1;
 				if (newSelection > iconList.length - 1)
 					newSelection = 0;
-                
+
 				moverCooldown += FlxG.updateFramerate / 4;
 			}
 			else
@@ -355,14 +360,15 @@ frostbite,shitno,monochrome,stranged red and isotope,missingno and a few other s
 		else
 			moverCooldown = 0;
 		updateVerticalSelection(newSelection, iconList.length - 1);
-			
-        var step:Int = 0;
+
+		var step:Int = 0;
 		var j:Int = 0;
 		//
 		var constant:Float = 150;
 		constant *= (11 / 12);
 		var fakeElapsed:Float = CoolUtil.clamp(elapsed, 0, 1);
-        for (i in 0...iconList.length) {
+		for (i in 0...iconList.length)
+		{
 			var iconX = (125 + (step * constant) - (iconList[i].width / 2));
 			var iconY = (125 + (constant * (j - Math.floor(verticalSelection / 2) + 0.5)) - (iconList[i].height / 2) + ((constant / 2) * step));
 			iconList[i].x = iconX;
@@ -373,9 +379,9 @@ frostbite,shitno,monochrome,stranged red and isotope,missingno and a few other s
 				step = 0;
 				j++;
 			}
-        }
+		}
 		CoolUtil.lerpSnap = false;
-    }
+	}
 
 	function updateVerticalSelection(newSelection:Int, limiter:Int = 1)
 	{
@@ -385,26 +391,27 @@ frostbite,shitno,monochrome,stranged red and isotope,missingno and a few other s
 			FlxG.sound.play(Paths.sound('scrollMenu'), 0.5);
 
 			for (i in 0...iconList.length)
-                iconList[i].alpha = 0.3;
+				iconList[i].alpha = 0.3;
 			iconList[verticalSelection].alpha = 1;
-            //
+			//
 			updateText();
 		}
-        //
+		//
 	}
 
-    function updateText() {
+	function updateText()
+	{
 		topText.text = personList[verticalSelection].name;
 		topText.x = 384 + ((485 / 2) - (topText.width / 2));
 		professionText.text = personList[verticalSelection].profession;
 		professionText.x = 384 + ((485 / 2) - (professionText.width / 2));
 		professionText.y = topText.y + topText.height;
-        //
+		//
 		stupidQuote.text = "\"" + personList[verticalSelection].quote + "\"";
 		stupidQuote.x = 384 + ((485 / 2) - (stupidQuote.width / 2));
 		stupidQuote.y = professionText.y + professionText.height + 8;
-        //
+		//
 		descriptionText.text = "\"" + personList[verticalSelection].description + "\"";
 		descriptionText.y = stupidQuote.y + stupidQuote.height + 16;
-    }
+	}
 }

@@ -84,7 +84,11 @@ class OverworldStage extends FlxState {
 
         collisionSprite = new FlxSprite().makeGraphic(16, 16);
         add(collisionSprite);
+        #if (sys && !html5)
         var startTime:Float = Sys.time();
+        #elseif html5
+        var startTime:Float = haxe.Timer.stamp();
+        #end
         for (i in 0...Std.int(bgCollision.width / 16)) {
 			collisionMap[i] = [];
 			for (j in 0...Std.int(bgCollision.height / 16)) {
@@ -93,7 +97,11 @@ class OverworldStage extends FlxState {
             }
         }
         trace(collisionMap);
+        #if (sys && !html5)
         trace('end time: ${Sys.time() - startTime}');
+        #elseif html5
+        trace('end time: ${haxe.Timer.stamp() - startTime}');
+        #end
         bgCollision.visible = false;
         collisionSprite.visible = false;
 

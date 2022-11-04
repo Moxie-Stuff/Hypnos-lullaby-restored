@@ -3,10 +3,11 @@ package meta;
 import flixel.math.FlxMath;
 import lime.utils.Assets;
 import meta.state.PlayState;
+import openfl.utils.Assets;
 
 using StringTools;
 
-#if !html5
+#if sys
 import sys.FileSystem;
 #end
 
@@ -68,6 +69,7 @@ class CoolUtil
 
 	public static function returnAssetsLibrary(library:String, ?subDir:String = 'assets/images'):Array<String>
 	{
+		#if (sys && !html5)
 		//
 		var libraryArray:Array<String> = [];
 		var unfilteredLibrary = FileSystem.readDirectory('$subDir/$library');
@@ -80,6 +82,19 @@ class CoolUtil
 		trace(libraryArray);
 
 		return libraryArray;
+		#elseif html5
+		var libraryArray:Array<String> = [];
+		var unfilteredLibrary = Assets.getText('$subDir/$library'); // it's returning as a string, so let's try this
+
+		for (folder in unfilteredLibrary)
+		{
+			if (!folder.contains('.'))
+				libraryArray.push(folder);
+		}
+		trace(libraryArray);
+
+		return libraryArray;
+		#end
 	}
 
 	public static function getAnimsFromTxt(path:String):Array<Array<String>>

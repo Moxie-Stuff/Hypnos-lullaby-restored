@@ -236,28 +236,6 @@ class Init extends FlxState
 
 	override public function create():Void
 	{
-		/*
-		for (i in pathsArray) {
-			var singularArray:Array<String> = i.split('/');
-			@:privateAccess
-			var path = getPreviousPath(singularArray[0], singularArray[1], singularArray[2]) + singularArray[3] + '.sol';
-			if (FileSystem.exists(path))
-			{
-				for (i in pathsArray)
-				{
-					var singularArray:Array<String> = i.split('/');
-					var directory:String = getPreviousPath(singularArray[0], singularArray[1], singularArray[2]);
-					var trimmedDirectory:String = directory.substring(0, directory.indexOf('/${singularArray[2]}'));
-					FileSystem.createDirectory(trimmedDirectory);
-					trace('directory $i lmfao');
-
-					var name:String = singularArray[3].replace('\\', '');
-					File.saveContent(directory + name + '.sol', 'yeah');
-				}
-			}
-		}
-		*/
-
 		FlxG.save.bind('lullabyv2', 'hypno');
 		Highscore.load();
 
@@ -279,9 +257,13 @@ class Init extends FlxState
 	}
 
 	private static function getPreviousPath(company:String, file:String, localPath:String):String {
+		#if (lime < 8.0.0)
 		@:privateAccess
 		var path = NativeCFFI.lime_system_get_directory(1, company, file) + "/" + localPath + "/";
 		return path;
+		#else
+		return null;
+		#end
 	}
 
 	private function gotoTitleScreen() {	

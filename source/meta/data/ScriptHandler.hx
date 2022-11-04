@@ -27,10 +27,7 @@ import meta.state.PlayState;
 import openfl.display.GraphicsShader;
 import openfl.display.Shader;
 import openfl.filters.ShaderFilter;
-#if sys
-import sys.FileSystem;
-import sys.io.File;
-#end
+import openfl.utils.Assets;
 
 using StringTools;
 
@@ -97,9 +94,8 @@ class ScriptHandler
 
 	public static function loadModule(path:String, ?extraParams:StringMap<Dynamic>)
 	{
-		// trace('Loading Module $path');
 		var modulePath:String = Paths.module(path);
-		return new ForeverModule(parser.parseString(File.getContent(modulePath), modulePath), extraParams);
+		return new ForeverModule(parser.parseString(Assets.getText(modulePath), modulePath), extraParams);
 	}
 }
 

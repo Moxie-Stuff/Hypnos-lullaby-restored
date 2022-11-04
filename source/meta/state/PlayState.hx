@@ -377,14 +377,14 @@ class PlayState extends MusicBeatState
 
 		#if (sys && !html5)
 		var time = Sys.time();
-		#else
+		#elseif html5
 		// var time = FlxG.elapsed;
 		var time = haxe.Timer.stamp();
 		#end
 		Events.obtainEvents();
 		#if (sys && !html5)
 		var newtime = Sys.time();
-		#else
+		#elseif html5
 		// var newtime = FlxG.elasped;
 		var newtime = haxe.Timer.stamp();
 		#end

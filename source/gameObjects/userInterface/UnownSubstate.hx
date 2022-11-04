@@ -18,9 +18,7 @@ import haxe.Json;
 import meta.MusicBeat.MusicBeatSubState;
 import meta.data.Song;
 import meta.state.PlayState;
-#if sys
-import sys.io.File;
-#end
+import openfl.utils.Assets;
 
 using StringTools;
 
@@ -142,10 +140,10 @@ class UnownSubstate extends MusicBeatSubState
 	}
 
     public static function init() {
-		var rawJson = File.getContent(Paths.getPath('unownTexts.json', TEXT)).trim();
+		var rawJson = Assets.getText(Paths.getPath('unownTexts.json', TEXT)).trim();
 		while (!rawJson.endsWith("}"))
 			rawJson = rawJson.substr(0, rawJson.length - 1);
-        // trace(rawJson);
+
 		var wordsList:MonochromeWords = cast Json.parse(rawJson).monochromeTexts;
 
 		publicWords = wordsList.words;

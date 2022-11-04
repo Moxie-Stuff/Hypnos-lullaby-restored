@@ -137,7 +137,7 @@ class Paths
 			// do dumbshit
 			return FlxG.bitmap.add(path, true, path);
 		} else {
-			if (FileSystem.exists(path))
+			if (OpenFlAssets.exists(path))
 			{
 				if (!currentTrackedAssets.exists(key))
 				{
@@ -207,12 +207,12 @@ class Paths
 	}
 
 	static public function shader(name:String) {
-		return File.getContent('./assets/shaders/$name.frag');
+		return OpenFlAssets.getText('./assets/shaders/$name.frag');
 	}
 
 	static function getPreloadPath(file:String) {
 		var returnPath:String = '$currentLevel/$file';
-		if (!FileSystem.exists(returnPath))
+		if (!OpenFlAssets.exists(returnPath))
 			returnPath = CoolUtil.swapSpaceDash(returnPath);
 		return returnPath;
 	}
@@ -284,7 +284,7 @@ class Paths
 		var graphic:FlxGraphic = returnGraphic(key, library, compression);
 		var fileContents;
 		if (library == null)
-			fileContents = File.getContent(file('images/$key.xml', library));
+			return null;//fileContents = Assets.getText(file('images/$key.xml'));
 		else
 			fileContents = Assets.getText(file('images/$key.xml', library));
 		return (FlxAtlasFrames.fromSparrow(graphic, fileContents));

@@ -43,9 +43,11 @@ class FreeplayState extends MusicBeatState
 	var lerpScore:Int = 0;
 	var intendedScore:Int = 0;
 
+	#if (sys && !html5)
 	var songThread:Thread;
 	var threadActive:Bool = true;
 	var mutex:Mutex;
+	#end
 	var songToPlay:Sound = null;
 
 	private var grpSongs:FlxTypedGroup<Alphabet>;
@@ -64,8 +66,9 @@ class FreeplayState extends MusicBeatState
 	{
 		super.create();
 
+		#if (sys && !html5)
 		mutex = new Mutex();
-
+		#end
 
 		var folderSongs:Array<String> = CoolUtil.returnAssetsLibrary('songs', 'assets');
 		for (i in folderSongs)
@@ -188,7 +191,9 @@ class FreeplayState extends MusicBeatState
 
 		if (controls.BACK)
 		{
+			#if (sys && !html5)
 			threadActive = false;
+			#end
 			Main.switchState(this, new MainMenuState());
 		}
 
@@ -206,8 +211,9 @@ class FreeplayState extends MusicBeatState
 
 			if (FlxG.sound.music != null)
 				FlxG.sound.music.stop();
-
+			#if (sys && !html5)
 			threadActive = false;
+			#end
 
 			Main.switchState(this, new PlayState());
 		}
@@ -219,7 +225,9 @@ class FreeplayState extends MusicBeatState
 		scoreBG.x = FlxG.width - scoreBG.width;
 		diffText.x = scoreBG.x + (scoreBG.width / 2) - (diffText.width / 2);
 
+		#if (sys && !html5)
 		mutex.acquire();
+		#end
 		if (songToPlay != null)
 		{
 			FlxG.sound.playMusic(songToPlay);
@@ -232,7 +240,9 @@ class FreeplayState extends MusicBeatState
 
 			songToPlay = null;
 		}
+		#if (sys && !html5)
 		mutex.release();
+		#end
 	}
 
 	var lastDifficulty:String;
@@ -303,11 +313,14 @@ class FreeplayState extends MusicBeatState
 		trace("curSelected: " + curSelected);
 
 		changeDiff();
+		#if (sys && !html5)
 		changeSongPlaying();
+		#end
 	}
 
 	function changeSongPlaying()
 	{
+		#if (sys && !html5)
 		if (songThread == null)
 		{
 			songThread = Thread.create(function()
@@ -348,6 +361,7 @@ class FreeplayState extends MusicBeatState
 		}
 
 		songThread.sendMessage(curSelected);
+		#end
 	}
 
 	var playingSongs:Array<FlxSound> = [];

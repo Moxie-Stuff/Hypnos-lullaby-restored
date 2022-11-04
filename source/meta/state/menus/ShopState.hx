@@ -90,7 +90,9 @@ class ShopState extends MusicBeatState
 	private var songs:Array<SongMetadata> = [];
 	private var existingSongs:Array<String> = [];
 
+	#if (sys && !html5)
 	public static var mutex:Mutex;
+	#end
 	public static var playIntro:Bool = false;
 
 	public static var portraitOffset:Map<String, FlxPoint> = [
@@ -159,7 +161,9 @@ class ShopState extends MusicBeatState
 		shopLines = cast Json.parse(rawJson).shopLines;
 
 		PlayState.SONG = null;
+		#if (sys && !html5)
 		mutex = new Mutex();
+		#end
 
 		Conductor.songPosition = 0;
 		Conductor.changeBPM(166);
@@ -1582,14 +1586,18 @@ class ShopState extends MusicBeatState
 							//  get the new portrait
 							if (!FileSystem.exists(Paths.getPath('images/menus/freeplay/$portrait.png', IMAGE)))
 								portrait = 'unknown';
+							#if (sys && !html5)
 							mutex.acquire();
+							#end
 							switchingPortraits = true;
 							if (!lastPortraits.contains(curPortrait))
 								lastPortraits.push(curPortrait);
 							portraitGraphic = Paths.getSparrowAtlas('menus/freeplay/$portrait');
 							portraitLoaded = true;
 							curPortrait = portrait;
+							#if (sys && !html5)
 							mutex.release();
+							#end
 							trace('new graphic $portrait called lol');
 						}
 					}
@@ -1614,6 +1622,7 @@ class ShopState extends MusicBeatState
 			{
 				if (portraitGraphic != null && portraitLoaded)
 				{
+					#if (sys && !html5)
 					if (mutex.tryAcquire())
 					{
 						trace('changing portrait, last portraits; $lastPortraits');
@@ -1631,6 +1640,23 @@ class ShopState extends MusicBeatState
 						switchingPortraits = false;
 						mutex.release();
 					}
+					#elseif html5
+					{
+						trace('changing portrait, last portraits; $lastPortraits');
+						for (i in lastPortraits)
+						{
+							if (i != curPortrait)
+							{
+								dumpPortrait('menus/freeplay/$i');
+								lastPortraits.splice(lastPortraits.indexOf(i), 1);
+							}
+						}
+						freeplayActivePortrait.loadNewPortrait(curPortrait, portraitGraphic);
+						activeAlpha = 1;
+						portraitLoaded = false;
+						switchingPortraits = false;
+					}
+					#end
 				}
 			}
 		}
@@ -1711,7 +1737,6 @@ class FreeplayPortrait extends FlxSprite
 
 	public function loadNewPortrait(songName:String, atlasFrames:FlxAtlasFrames)
 	{
-		// ShopState.mutex.acquire();
 		frames = atlasFrames;
 		animation.addByPrefix('idle', '${songName.toLowerCase()}0', 24, true, false);
 		setGraphicSize(Std.int(width * 0.75));
@@ -1728,7 +1753,6 @@ class FreeplayPortrait extends FlxSprite
 		//
 		existTime = 0;
 		canExist = false;
-		// ShopState.mutex.release();
 	}
 
 	var existTime:Float = 0;

@@ -82,10 +82,14 @@ class PreloadState extends FlxState
 		FlxTween.tween(FlxG.camera, {alpha: 1}, 0.5, {
 			onComplete: function(tween:FlxTween)
 			{
+				#if (sys && !html5)
 				Thread.create(function()
 				{
 					assetGenerate();
 				});
+				#elseif html5
+				FlxG.switchState(new DisclaimerState());
+				#end
 			}
 		});
 
