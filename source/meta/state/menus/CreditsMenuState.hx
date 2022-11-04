@@ -1,7 +1,9 @@
 package meta.state.menus;
 
 import haxe.Json;
+#if sys
 import sys.io.File;
+#end
 import flixel.FlxCamera;
 import flixel.FlxG;
 import flixel.FlxSprite;
@@ -13,7 +15,9 @@ import flixel.util.FlxColor;
 import meta.MusicBeat;
 import openfl.display.GraphicsShader;
 import openfl.filters.ShaderFilter;
+#if sys
 import sys.FileSystem;
+#end
 
 using StringTools;
 typedef Credits = {

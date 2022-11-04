@@ -5,7 +5,9 @@ import haxe.format.JsonParser;
 import lime.utils.Assets;
 import meta.data.Section.SwagSection;
 import meta.state.PlayState;
+#if sys
 import sys.io.File;
+#end
 
 using StringTools;
 

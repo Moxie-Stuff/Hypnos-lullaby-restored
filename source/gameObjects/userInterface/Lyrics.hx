@@ -6,7 +6,9 @@ import flixel.text.FlxText;
 import flixel.group.FlxGroup.FlxTypedGroup;
 import haxe.Json;
 import meta.state.PlayState;
+#if sys
 import sys.io.File;
+#end
 
 using StringTools;
 

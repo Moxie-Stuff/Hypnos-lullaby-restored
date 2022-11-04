@@ -20,9 +20,11 @@ import meta.data.Song.SwagSong;
 import meta.data.dependency.Discord;
 import meta.data.font.Alphabet;
 import openfl.media.Sound;
+#if sys
 import sys.FileSystem;
 import sys.thread.Mutex;
 import sys.thread.Thread;
+#end
 
 using StringTools;
 

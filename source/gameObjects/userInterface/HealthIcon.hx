@@ -5,7 +5,9 @@ import flixel.FlxSprite;
 import flixel.graphics.FlxGraphic;
 import flixel.graphics.frames.FlxAtlasFrames;
 import openfl.utils.Assets as OpenFlAssets;
+#if sys
 import sys.FileSystem;
+#end
 
 using StringTools;
 

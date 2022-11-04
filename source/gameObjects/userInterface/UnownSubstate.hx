@@ -18,7 +18,9 @@ import haxe.Json;
 import meta.MusicBeat.MusicBeatSubState;
 import meta.data.Song;
 import meta.state.PlayState;
+#if sys
 import sys.io.File;
+#end
 
 using StringTools;
 

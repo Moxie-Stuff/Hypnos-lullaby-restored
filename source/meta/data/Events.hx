@@ -13,7 +13,9 @@ import gameObjects.userInterface.notes.Strumline;
 import meta.data.ScriptHandler;
 import meta.state.PlayState;
 import openfl.filters.ShaderFilter;
+#if sys
 import sys.FileSystem;
+#end
 
 using StringTools;
 

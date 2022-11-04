@@ -34,10 +34,12 @@ import meta.subState.UnlockSubstate.LockSprite;
 import openfl.display.GraphicsShader;
 import openfl.events.MouseEvent;
 import openfl.filters.ShaderFilter;
+#if sys
 import sys.FileSystem;
 import sys.io.File;
 import sys.thread.Mutex;
 import sys.thread.Thread;
+#end
 
 using StringTools;
 

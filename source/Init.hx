@@ -16,8 +16,10 @@ import openfl.filters.ColorMatrixFilter;
 import openfl.net.SharedObject;
 import openfl.system.System;
 import overworld.OverworldStage;
+#if sys
 import sys.FileSystem;
 import sys.io.File;
+#end
 
 using StringTools;
 

@@ -27,8 +27,10 @@ import meta.state.PlayState;
 import openfl.display.GraphicsShader;
 import openfl.display.Shader;
 import openfl.filters.ShaderFilter;
+#if sys
 import sys.FileSystem;
 import sys.io.File;
+#end
 
 using StringTools;
 
