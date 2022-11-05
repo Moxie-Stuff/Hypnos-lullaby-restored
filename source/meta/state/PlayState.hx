@@ -2644,7 +2644,7 @@ class PlayState extends MusicBeatState
 					{
 						Main.switchState(this, new ShopState());
 					});
-					playerStrums.forEach(function(spr:Strumline)
+					boyfriendStrums.forEach(function(spr:Strumline)
 					{
 						spr.alpha = 0;
 					});
