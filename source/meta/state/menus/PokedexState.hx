@@ -9,8 +9,10 @@ import flixel.FlxSprite;
 import flixel.math.FlxPoint;
 import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.text.FlxText;
+#if sys
 import sys.FileSystem;
 import sys.io.File;
+#end
 import flixel.util.FlxColor;
 import haxe.Json;
 import meta.MusicBeat.MusicBeatState;

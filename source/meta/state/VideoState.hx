@@ -1,7 +1,9 @@
 package meta.state;
 
 import vlc.MP4Handler;
+#if sys
 import sys.FileSystem;
+#end
 import meta.MusicBeat.MusicBeatState;
 
 class VideoState extends MusicBeatState {

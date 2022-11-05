@@ -1,6 +1,8 @@
 package meta.subState;
 
+#if sys
 import sys.FileSystem;
+#end
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.FlxSubState;
@@ -18,8 +20,10 @@ import meta.MusicBeat.MusicBeatSubState;
 import meta.data.font.Alphabet;
 import meta.state.*;
 import meta.state.menus.*;
+#if sys
 import sys.thread.Mutex;
 import sys.thread.Thread;
+#end
 
 class PauseSubState extends MusicBeatSubState
 {

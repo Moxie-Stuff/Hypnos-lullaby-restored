@@ -48,7 +48,9 @@ import openfl.utils.ByteArray;
 
 using StringTools;
 
+#if sys
 import sys.thread.Thread;
+#end
 
 /**
 	As the name implies, this is the class where all of the charting state stuff happens, so when you press 7 the game
