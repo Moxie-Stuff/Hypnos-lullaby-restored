@@ -33,6 +33,7 @@ class UIStaticArrow extends FlxSprite
 		it's in a separate class and I also added the ability to set offsets for the arrows.
 
 		uh hey you're cute ;)
+		aw thanks
 	 */
 	public var animOffsets:Map<String, Array<Dynamic>>;
 	public var babyArrowType:Int = 0;
