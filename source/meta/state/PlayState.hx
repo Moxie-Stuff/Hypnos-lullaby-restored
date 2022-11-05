@@ -2646,7 +2646,7 @@ class PlayState extends MusicBeatState
 					});
 					boyfriendStrums.forEach(function(spr:Strumline)
 					{
-						spr.alpha = 0;
+						spr.visible = false;
 					});
 				default:
 					openSubState(new GameOverSubstate(boyfriend.curCharacter, boyfriend.getScreenPosition().x, boyfriend.getScreenPosition().y));
