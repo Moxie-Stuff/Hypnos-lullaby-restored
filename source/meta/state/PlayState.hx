@@ -2644,10 +2644,7 @@ class PlayState extends MusicBeatState
 					{
 						Main.switchState(this, new ShopState());
 					});
-					boyfriendStrums.forEach(function(spr:Strumline)
-					{
-						spr.visible = false;
-					});
+					boyfriendStrums.visible = false;
 				default:
 					openSubState(new GameOverSubstate(boyfriend.curCharacter, boyfriend.getScreenPosition().x, boyfriend.getScreenPosition().y));
 			}
