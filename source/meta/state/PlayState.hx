@@ -3380,10 +3380,12 @@ class PlayState extends MusicBeatState
 		super.onFocusLost();
 	}
 
+	#if desktop
 	public static function updateRPC(pausedRPC:Bool)
 	{
 		Discord.changePresence('Heard you like snooping around Discord', 'Real classy.', iconRPC);
 	}
+	#end
 
 	var animationsPlay:Array<Note> = [];
 
