@@ -207,7 +207,7 @@ function onEvent(eventName) {
 
 			PlayState.instance.boyfriendStrums.character.push(mikefp);
 			PlayState.instance.boyfriendStrums.singingCharacters = [mikefp];
-			if (PlayState.gameplayMode != 'PUSSY_MODE') strangling = true;
+			if (PlayState.gameplayMode != 'Pussy') strangling = true;
 
 			mikefp.visible = true;
 			mikefp.alpha = 0.45;
@@ -270,7 +270,7 @@ function onUpdate(elapsed)
 	{
 		if (strangling)
 			{
-				if (PlayState.gameplayMode == 'HELL_MODE')
+				if (PlayState.gameplayMode == 'Hell')
 					{
 						if (PlayState.health >= 0.050) PlayState.health -= 0.0055 * ((elapsed) * 120);
 					}
