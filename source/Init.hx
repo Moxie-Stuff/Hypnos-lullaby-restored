@@ -257,13 +257,9 @@ class Init extends FlxState
 	}
 
 	private static function getPreviousPath(company:String, file:String, localPath:String):String {
-		#if (lime < "8.0.0")
 		@:privateAccess
 		var path = NativeCFFI.lime_system_get_directory(1, company, file) + "/" + localPath + "/";
 		return path;
-		#else
-		return null;
-		#end
 	}
 
 	private function gotoTitleScreen() {	
