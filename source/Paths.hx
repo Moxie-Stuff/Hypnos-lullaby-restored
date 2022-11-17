@@ -207,7 +207,11 @@ class Paths
 	}
 
 	static public function shader(name:String) {
+		#if sys
+		return File.getContent('./assets/shaders/$name.frag');
+		#else
 		return OpenFlAssets.getText('./assets/shaders/$name.frag');
+		#end
 	}
 
 	static function getPreloadPath(file:String) {
