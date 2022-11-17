@@ -220,7 +220,11 @@ class Paths
 
 	static function getPreloadPath(file:String) {
 		var returnPath:String = '$currentLevel/$file';
+		#if sys
+		if (!FileSystem.exists(returnPath))
+		#else
 		if (!OpenFlAssets.exists(returnPath))
+		#end
 			returnPath = CoolUtil.swapSpaceDash(returnPath);
 		return returnPath;
 	}
@@ -292,7 +296,11 @@ class Paths
 		var graphic:FlxGraphic = returnGraphic(key, library, compression);
 		var fileContents;
 		if (library == null)
-			fileContents = Assets.getText(file('images/$key.xml'));
+			#if sys
+			fileContents = File.getContent(file('images/$key.xml', library));
+			#else
+			fileContents = Assets.getText(file('images/$key.xml', library));
+			#end
 		else
 			fileContents = Assets.getText(file('images/$key.xml', library));
 		return (FlxAtlasFrames.fromSparrow(graphic, fileContents));
