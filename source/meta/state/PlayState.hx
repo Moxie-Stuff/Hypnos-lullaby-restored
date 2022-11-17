@@ -353,6 +353,13 @@ class PlayState extends MusicBeatState
 	var coldnessRate:Float = 0.0;
 	var typhlosionUses:Int = 10;
 
+	var _typhlosionUses(default,set):Int = 10;
+
+	function set__typhlosionUses(v:Int):Int
+	{
+		return gameplayMode != 'Hell' ? typhlosionUses = 20 : typhlosionUses = 10;
+	}
+
 	// Brimstone Gengar Notes
 	var gengarNoteInvis:Float = 0.0;
 
