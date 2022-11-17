@@ -15,3 +15,5 @@ hpyno lullabyino
 * Fix shit
 
 * Finish Purin & other songs like Amusia for example
+
+* Fix Death Toll (The 5k thing is bugged for some damn reason)

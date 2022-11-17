@@ -362,7 +362,12 @@ class PlayState extends MusicBeatState
 
 	public var camPos:FlxPoint;
 
-	public static var bronzongMechanic:Bool = false;
+	public static var bronzongMechanic(default, set):Bool = false;
+
+	static inline function set_bronzongMechanic(v:Bool):Bool
+	{
+		return (SONG.song.toLowerCase() == 'death-toll' && gameplayMode != 'Pussy') ? true : false;
+	}
 
 	var blurAmount:Float = 0.0;
 
@@ -410,7 +415,6 @@ class PlayState extends MusicBeatState
 		forceZoom = [0, 0, 0, 0];
 		buriedNotes = false;
 
-		bronzongMechanic = false;
 		defaultDownscroll = Init.trueSettings.get('Downscroll');
 		flashingEnabled = Init.trueSettings.get('Flashing Lights');
 		gameplayMode = Init.trueSettings.get('Mechanics');
@@ -1023,7 +1027,7 @@ class PlayState extends MusicBeatState
 				FlxG.sound.list.add(accuracySound);
 			}
 
-			if (bronzongMechanic)
+			if (bronzongMechanic && boyfriendStrums != null)
 			{
 				boyfriendStrums.keyAmount = 5;
 				boyfriendStrums.xPos = placement - (!Init.trueSettings.get('Centered Notefield') ? midPoint : 0);
@@ -1066,7 +1070,7 @@ class PlayState extends MusicBeatState
 		{
 			// pussy mode stuff
 			tranceActive = false;
-			bronzongMechanic = false;
+			// bronzongMechanic = false;
 			useFrostbiteMechanic = false;
 			accuracyMod = false;
 			botplayText.text = "certified pussy enjoyer";
@@ -1098,7 +1102,7 @@ class PlayState extends MusicBeatState
 
 		FlxG.worldBounds.set(0, 0, FlxG.width, FlxG.height);
 
-		if (bronzongMechanic)
+		if (bronzongMechanic && FlxG.save.data.gameControls != null)
 		{
 			keysArray = [
 				copyKey(Init.gameControls.get('LEFT')[0]),
@@ -3613,12 +3617,11 @@ class PlayState extends MusicBeatState
 		if (!paused)
 		{
 			songMusic.play();
-			#if !html5
+
 			songMusic.onComplete = doMoneyBag;
 			vocals.play();
 
-			// resyncVocals();
-
+			#if !html5
 			// Song duration in a float, useful for the time left feature
 			songLength = songMusic.length;
 
