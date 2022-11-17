@@ -247,7 +247,8 @@ function onEvent(eventName) {
         default:
             trace('an event was called in death toll. woohoo');
         case 'Bong':
-            hellbell.playAnim('bong', true);			
+			// trace('bing bong');
+            hellbell.playAnim('bong', true);
             hellbell.animation.finishCallback = function(name:String){
                 if (name == 'bong') {
 					hellbell.dance();
@@ -261,6 +262,7 @@ function onEvent(eventName) {
 					});
 				});
 		case 'Beelze Walk':
+			trace('the contract comes out');
 			PlayState.dadOpponent.visible = false;
 			beelzewalk.visible = true;
 			beelzewalk.playAnim('Walk');						
