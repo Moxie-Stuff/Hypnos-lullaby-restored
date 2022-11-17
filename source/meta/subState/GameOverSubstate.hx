@@ -85,7 +85,7 @@ class GameOverSubstate extends MusicBeatSubState
 				loopSoundName = 'bygonedeathmusic';
 				endSoundName = 'bygoneConfirm';
 				deathSoundName = 'bygonedeathNoise';
-			case 'cold-gold':
+			case 'cold-gold': // TODO: maybe add the old gameover(?)
 				loopSoundName = 'MtSilverLoop';
 				endSoundName = 'MtSilverEnd';
 			case 'gf':

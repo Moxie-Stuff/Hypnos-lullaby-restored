@@ -454,8 +454,6 @@ class PlayState extends MusicBeatState
 			selectedPasta = false;
 		}
 
-		// FlxTransitionableState.defaultTransIn = FlxTransitionableState.defaultTransIn;
-
 		songSpeed = SONG.speed;
 		//
 		laneSpeed = [SONG.speed, SONG.speed, SONG.speed, SONG.speed];
