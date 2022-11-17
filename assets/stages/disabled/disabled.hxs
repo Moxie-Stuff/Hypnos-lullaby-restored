@@ -393,6 +393,7 @@ function onEvent(eventName) {
             FlxTween.tween(staticSprite, {alpha: 0}, (Conductor.stepCrochet / 1000) * 64, {ease: FlxEase.linear});
 
             questionareBackground.visible = true;
+            // TODO: add the dialogue
             PlayState.instance.add(questionareWiggles);
             PlayState.instance.add(questionareWigglesClose);
             // */

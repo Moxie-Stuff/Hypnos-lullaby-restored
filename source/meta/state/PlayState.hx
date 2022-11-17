@@ -182,7 +182,7 @@ class PlayState extends MusicBeatState
 	private var allSicks:Bool = true;
 
 	// if you ever wanna add more keys
-	public static var numberOfKeys:Int = 4;
+	public static var numberOfKeys(default, null):Int = 4;
 	public static var playerLane:Int = 1;
 
 	// get it cus release
