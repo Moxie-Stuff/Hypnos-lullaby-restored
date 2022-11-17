@@ -137,7 +137,11 @@ class Paths
 			// do dumbshit
 			return FlxG.bitmap.add(path, true, path);
 		} else {
+			#if sys
+			if (FileSystem.exists(path))
+			#else
 			if (OpenFlAssets.exists(path))
+			#end
 			{
 				if (!currentTrackedAssets.exists(key))
 				{
@@ -288,7 +292,7 @@ class Paths
 		var graphic:FlxGraphic = returnGraphic(key, library, compression);
 		var fileContents;
 		if (library == null)
-			return null;//fileContents = Assets.getText(file('images/$key.xml'));
+			fileContents = Assets.getText(file('images/$key.xml'));
 		else
 			fileContents = Assets.getText(file('images/$key.xml', library));
 		return (FlxAtlasFrames.fromSparrow(graphic, fileContents));
