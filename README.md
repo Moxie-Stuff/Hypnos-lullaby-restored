@@ -14,4 +14,4 @@ hpyno lullabyino
 
 * Fix shit
 
-* Finish Purin & other songs like Amusia
+* Finish Purin & other songs like Amusia for example
