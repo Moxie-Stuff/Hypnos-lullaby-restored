@@ -28,6 +28,7 @@ import meta.data.dependency.Discord;
 import meta.data.font.Alphabet;
 import meta.state.menus.*;
 import openfl.Assets;
+import flixel.input.keyboard.FlxKey;
 
 using StringTools;
 
@@ -58,6 +59,8 @@ class TitleState extends MusicBeatState
 	{
 		controls.setKeyboardScheme(None, false);
 		super.create();
+
+		FlxG.sound.muteKeys = [FlxKey.ZERO];
 
 		startIntro();
 	}
