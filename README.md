@@ -10,4 +10,8 @@ hpyno lullabyino
 
 ### TODO:
 
-* None
+* Add the missing assets
+
+* Fix shit
+
+* Finish Purin & other songs like Amusia for example
