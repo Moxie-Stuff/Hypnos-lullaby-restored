@@ -6,4 +6,4 @@ hpyno lullabyino
 
 ### TODO:
 
-Fix the fucking sprites being flixel icons
+* Fix the fucking sprites being flixel icons
