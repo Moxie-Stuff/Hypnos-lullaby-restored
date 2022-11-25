@@ -5,8 +5,6 @@
 
 	<app title="Friday Night Funkin': Hypno's Lullaby" file="Hypnos Lullaby" packageName="com.ninjamuffin99.funkin" package="com.ninjamuffin99.funkin" main="Main" version="0.2.0" company="banbuds" />
 
-	<!--The flixel preloader is not accurate in Chrome. You can use it regularly if you embed the swf into a html file
-		or you can set the actual size of your file manually at "FlxPreloaderBase-onUpdate-bytesTotal"-->
 	<app preloader="flixel.system.FlxPreloader" />
 
 	<!--Minimum without FLX_NO_GAMEPAD: 11.8, without FLX_NO_NATIVE_CURSOR: 11.2-->
@@ -30,7 +28,6 @@
 	<assets path="plugins/" rename='' />
 	<assets path="FE-CrashDialog.exe" type="template" if="windows release" />
 	<define name="VIDEOS_ALLOWED" if="web || windows" unless="32bits"/>
-	<!--<assets path="mods" />-->
 
 	<!-- _______________________________ Libraries ______________________________ -->
 
@@ -39,6 +36,7 @@
 
 	<haxelib name="flixel-addons" />
 	<haxelib name="hscript" />
+	<haxedef name="hscriptPos" value="true" />
 	<haxelib name="flixel-ui"/>
  	<haxelib name="discord_rpc"/>
 	<haxelib name="hxCodec" if="VIDEOS_ALLOWED"/>
