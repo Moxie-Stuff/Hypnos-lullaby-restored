@@ -18,4 +18,6 @@ hpyno lullabyino
 
 * Fix Death Toll (The 5k thing is bugged for some damn reason)
 
+* Fix Hscript being a buggy bitch
+
 ### No it's not dead, I've been busy
