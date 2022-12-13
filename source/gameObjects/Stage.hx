@@ -25,6 +25,7 @@ class Stage extends FlxTypedGroup<FlxSprite> {
 		exposure.set('add', add);
 		exposure.set('foreground', foreground);
 		exposure.set('stage', this);
+		exposure.set('this', this);
         exposure.set('curStage', this.curStage);
 		exposure.set('boyfriend', PlayState.boyfriend);
 		exposure.set('dad', PlayState.dadOpponent);
