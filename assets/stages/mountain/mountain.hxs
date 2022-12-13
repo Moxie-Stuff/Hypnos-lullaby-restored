@@ -198,9 +198,15 @@ function onUpdate(elapsed)
 
 		if (PlayState.instance.coldness >= 1.0) PlayState.health = PlayState.minHealth;
 		
-		if (PlayState.instance.coldnessDisplay < 0.33) PlayState.instance.frostbiteTheromometer.animation.play('stage1'); //this code kinda lazy, i'll rewrite it?
-		if (PlayState.instance.coldnessDisplay >= 0.33) PlayState.instance.frostbiteTheromometer.animation.play('stage2');
-		if (PlayState.instance.coldnessDisplay >= 0.66) PlayState.instance.frostbiteTheromometer.animation.play('stage3');
+		// if (PlayState.instance.coldnessDisplay < 0.33) PlayState.instance.frostbiteTheromometer.animation.play('stage1'); //this code kinda lazy, i'll rewrite it?
+		// if (PlayState.instance.coldnessDisplay >= 0.33) PlayState.instance.frostbiteTheromometer.animation.play('stage2');
+		// if (PlayState.instance.coldnessDisplay >= 0.66) PlayState.instance.frostbiteTheromometer.animation.play('stage3');
+
+		if (PlayState.instance.frostbiteTheromometer != null && PlayState.instance.frostbiteTheromometer.animation.curAnim != null){
+			if (PlayState.instance.coldnessDisplay < 0.33) PlayState.instance.frostbiteTheromometer.animation.play('stage1'); //this code kinda lazy, i'll rewrite it?
+			else if (PlayState.instance.coldnessDisplay >= 0.33) PlayState.instance.frostbiteTheromometer.animation.play('stage2');
+			else if (PlayState.instance.coldnessDisplay >= 0.66) PlayState.instance.frostbiteTheromometer.animation.play('stage3');
+		}
 
 		if (PlayState.instance.coldness >= 0.35 && !shownOnce)
 			{
