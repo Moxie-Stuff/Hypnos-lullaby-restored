@@ -64,7 +64,7 @@ class Stage extends FlxTypedGroup<FlxSprite> {
 
 	public function dispatchEvent(myEvent:String)
 	{
-		if (stageBuild.exists("onEvent"))
+		if (stageBuild.exists("onEvent") && stageBuild != null)
 			stageBuild.get("onEvent")(myEvent);
 	}
 

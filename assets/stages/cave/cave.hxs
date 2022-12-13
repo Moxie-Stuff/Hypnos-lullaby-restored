@@ -88,26 +88,36 @@ function onEvent(eventName) {
 				}
 			}
 			FlxTween.tween(FlxG.camera, {zoom: 0.52}, 0.3);	
-			FlxTween.tween(PlayState.camHUD, {alpha: 0}, 0.2);	
-			FlxTween.tween(PlayState.uiHUD, {alpha: 0}, 0.2);
-			for (i in 0...PlayState.strumHUD.length) 
-				FlxTween.tween(PlayState.strumHUD[i], {alpha: 0}, 0.2);
+			if (PlayState.instance.camHUD != null && PlayState.instance.uiHUD != null){
+				FlxTween.tween(PlayState.camHUD, {alpha: 0}, 0.2);	
+				FlxTween.tween(PlayState.uiHUD, {alpha: 0}, 0.2);
+			}
+			for (i in 0...PlayState.strumHUD.length) {
+				if (PlayState.instance.strumHUD[i] != null) {
+					FlxTween.tween(PlayState.strumHUD[i], {alpha: 0}, 0.2);
+				}
+			}
 
 			new FlxTimer().start(1.5, function(tmr:FlxTimer)
 				{				
 					PlayState.instance.flipHealthbar();
 					PlayState.instance.lcBar2();		
 					PlayState.instance.pendulum.alpha = 1;
-					PlayState.instance.camZooming = true;						
-					FlxTween.tween(PlayState.camHUD, {alpha: 1}, 0.2);	
-					FlxTween.tween(PlayState.uiHUD, {alpha: 1}, 0.2);
+					PlayState.instance.camZooming = true;
+					if (PlayState.instance.camHUD != null && PlayState.instance.uiHUD != null){
+						FlxTween.tween(PlayState.camHUD, {alpha: 1}, 0.2);
+						FlxTween.tween(PlayState.uiHUD, {alpha: 1}, 0.2);
+					}
 					if (PlayState.instance.iconBfhypno != null)
 						PlayState.instance.iconBfhypno.visible = false;
 					PlayState.instance.iconP2.visible = true;
 					if (!Init.trueSettings.get("Centered Notefield"))
 						PlayState.instance.dadStrums.visible = true;
-					for (i in 0...PlayState.strumHUD.length) 
-						FlxTween.tween(PlayState.strumHUD[i], {alpha: 1}, 0.2);								
+					for (i in 0...PlayState.strumHUD.length){
+						if (PlayState.instance.strumHUD[i] != null) {
+							FlxTween.tween(PlayState.strumHUD[i], {alpha: 1}, 0.2);
+						}
+					}
 				});
 
 			new FlxTimer().start(2, function(tmr:FlxTimer)
@@ -150,7 +160,5 @@ function onEvent(eventName) {
 			PlayState.dadOpponent.visible = false;
 			hypnoJumpscare.visible = true;
 			hypnoJumpscare.animation.play('ending');
-			
-					
 	}
 }
