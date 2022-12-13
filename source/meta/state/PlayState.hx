@@ -2497,8 +2497,10 @@ class PlayState extends MusicBeatState
 								pendulumOffset[1] = 416;
 						}
 				}
-				pendulum.x = dadOpponent.x + pendulumOffset[0];
-				pendulum.y = dadOpponent.y + pendulumOffset[1];
+				if (pendulum != null) {
+					pendulum.x = dadOpponent.x + pendulumOffset[0];
+					pendulum.y = dadOpponent.y + pendulumOffset[1];
+				}
 			}
 
 			// spawn in the notes from the array
