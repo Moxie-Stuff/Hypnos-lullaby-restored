@@ -12,9 +12,10 @@ function eventFunction(params) {
     if (Math.isNaN(newStart))
         newStart = 1;
     intensity = newIntensity;
-    if (oppGlitchShader != null)
+    if (oppGlitchShader != null) {
         oppGlitchShader.data.intensity.value = [newIntensity];
         oppGlitchShader.data.inital.value = [newStart];
+    }
 }
 
 function onUpdate(elapsed) {
