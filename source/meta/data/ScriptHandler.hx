@@ -28,13 +28,14 @@ import openfl.display.GraphicsShader;
 import openfl.display.Shader;
 import openfl.filters.ShaderFilter;
 import openfl.utils.Assets;
+import flixel.FlxBasic;
 
 using StringTools;
 
 /**
  * Handles the Backend and Script interfaces of Forever Engine, as well as exceptions and crashes.
  */
-class ScriptHandler
+class ScriptHandler implements IScriptInterface
 {
 	/**
 	 * Shorthand for exposure, specifically public exposure. 
@@ -43,6 +44,8 @@ class ScriptHandler
 	public static var exp:StringMap<Dynamic>;
 
 	public static var parser:Parser = new Parser();
+
+	public static var object:FlxBasic = new FlxBasic();
 
 	/**
 	 * [Initializes the basis of the Scripting system]
@@ -87,6 +90,9 @@ class ScriptHandler
 		exp.set("HealthIcon", HealthIcon);
         exp.set("PlayState", PlayState);
 		exp.set("CelebiNote", CelebiNote);
+
+		// misc
+		exp.set("add", add(object));
         
         //
 		parser.allowTypes = true;
@@ -96,6 +102,10 @@ class ScriptHandler
 	{
 		var modulePath:String = Paths.module(path);
 		return new ForeverModule(parser.parseString(Assets.getText(modulePath), modulePath), extraParams);
+	}
+
+	inline public static function add(obj):Void{
+		return Std.isOfType(obj, FlxBasic) ? FlxG.state.add(obj) : throw haxe.exceptions.NotImplementedException;
 	}
 }
 
